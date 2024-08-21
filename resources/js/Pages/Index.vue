@@ -46,7 +46,7 @@ const backPage = () => {
 </script>
 <template>
   <MainLayout>
-    <div id="input_div" class="px-4 py-4 bg-white">
+    <div v-if="form.NickName != null" id="input_div" class="px-4 py-4 bg-white">
       <p class="my-1">
         ニックネーム： <span class="text-gray-600"> {{ form.NickName }}</span>
       </p>

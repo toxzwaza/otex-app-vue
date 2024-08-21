@@ -1,0 +1,91 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+body{
+    margin: 0;
+}
+
+#container {
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    position: relative;
+
+    & img {
+        width: 100%;
+        height: 100%;
+        object-fit: fill;
+    }
+
+    & #form_container {
+        height: 0;
+        width: 100%;
+        & label{
+            color: #4E4E4F;
+        }
+
+        & input[type="radio"] {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 1px solid #4E4E4F;
+            margin-right: 5px;
+            accent-color: rgb(255, 79, 79);
+        }
+        & > div {
+            width: 80%;
+        }
+
+        & #ans1 {
+            position: absolute;
+            left: 13%;
+            top: 31%;
+            z-index: 1;
+        }
+        & #ans2 {
+            position: absolute;
+            left: 13%;
+            top: 42%;
+            z-index: 1;
+        }
+        & #ans3 {
+            position: absolute;
+            left: 13%;
+            top: 53%;
+            z-index: 1;
+        }
+        & #ans4 {
+            position: absolute;
+            left: 13%;
+            top: 64%;
+            z-index: 1;
+        }
+        & #ans5 {
+            position: absolute;
+            left: 13%;
+            top: 75%;
+            z-index: 1;
+            & textarea {
+                width: 96%;
+                border-radius: 6px;
+                border: rgba(167, 166, 166, 0.671) solid 2px;
+                font-size: 1.2rem;
+                padding: 1rem;
+            }
+        }
+
+        & #button {
+            position: absolute;
+            bottom: 6%;
+            right: 10%;
+            padding: 0.4rem 0.8rem;
+            border: 1px solid #5e5e5e;
+            border-radius: 5px;
+            background-color: white;
+            padding: 2% 4%;
+            font-weight: 600;
+        }
+    }
+}

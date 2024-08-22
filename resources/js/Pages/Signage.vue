@@ -1,5 +1,7 @@
 <script setup>
 import { onMounted } from "vue";
+import axios from "axios";
+
 defineProps({
   answers: Array,
 });
@@ -26,6 +28,18 @@ const changeExhibition = (ans2) => {
       break;
   }
   return returnText;
+};
+
+
+const getAnswers = async () => {
+    try{
+        await axios.get('/api/getAnswers')
+        .then( res => {
+            console.log(res);
+        });
+    }catch(e){
+        console.log('データ取得失敗。')
+    }
 };
 
 

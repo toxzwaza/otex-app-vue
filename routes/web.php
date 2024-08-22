@@ -23,6 +23,8 @@ Route::post('/store' ,[MainController::class, 'store'])->name('store');
 // サイネージ画面
 Route::get('/signage', [MainController::class, 'signage'])->name('signage');
 
+Route::get('/api/getAnswers', [MainController::class. 'getAnswers'])->name('getAnswers');
+
 
 // Route::get('/', function () {
 //     return Inertia::render('Welcome', [

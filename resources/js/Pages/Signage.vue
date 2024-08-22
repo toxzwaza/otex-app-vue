@@ -27,24 +27,27 @@ const changeExhibition = (ans2) => {
   }
   return returnText;
 };
+
+
 </script>
 <template>
   <main id="main_container">
     <img class="background_img" src="/signage_bk.png" alt="" />
     <h1
-      class="top_title w-full absolute top-56 font-serif text-gray-600 text-7xl text-center font-bold"
+      class="top_title w-full absolute top-24 font-serif text-gray-600 text-2xl text-center font-bold"
     >
       アンケートのご協力ありがとうございます！
     </h1>
 
-    <section class="absolute top-80 text-gray-600 body-font w-full">
+    <section class="absolute top-24 text-gray-600 body-font w-full">
       <div class="container px-5 py-24 mx-auto">
         <div class="flex flex-col text-center w-full mb-20">
-          <h1 class="text-6xl font-medium title-font text-gray-700 font-mono mb-8">
+          <h1 class="text-lg font-medium title-font text-gray-700 font-mono mb-8">
             アンケート結果
           </h1>
-          <p class="text-2xl w-full mx-auto leading-relaxed font-serif ">
+          <p class="text-base w-full mx-auto leading-relaxed font-serif ">
             本日のアンケート結果は、次回の展示やこれからの採用活動にて使用させていただきます。
+            なお、本日いただいたデータは外部に一切共有することはありません。
           </p>
         </div>
         <div class="lg:w-full w-full mx-auto overflow-auto">
@@ -52,47 +55,47 @@ const changeExhibition = (ans2) => {
             <thead>
               <tr>
                 <th
-                  class="whitespace-nowrap px-4 py-3 title-font tracking-wider font-medium text-gray-800 text-xl bg-gray-100 rounded-tl rounded-bl"
+                  class="whitespace-nowrap px-2 py-2 title-font tracking-wider font-medium text-gray-800 text-sm bg-gray-100 rounded-tl rounded-bl"
                 >
                   ニックネーム
                 </th>
                 <th
-                  class="whitespace-nowrap px-4 py-3 title-font tracking-wider font-medium text-gray-800 text-xl bg-gray-100"
+                  class="whitespace-nowrap px-2 py-2 title-font tracking-wider font-medium text-gray-800 text-sm bg-gray-100"
                 >
                   学校
                 </th>
                 <th
-                  class="whitespace-nowrap px-4 py-3 title-font tracking-wider font-medium text-gray-800 text-xl bg-gray-100"
+                  class="whitespace-nowrap px-2 py-2 title-font tracking-wider font-medium text-gray-800 text-sm bg-gray-100"
                 >
                   学年
                 </th>
                 <th
-                  class="whitespace-nowrap px-4 py-3 title-font tracking-wider font-medium text-gray-800 text-xl bg-gray-100"
+                  class="whitespace-nowrap px-2 py-2 title-font tracking-wider font-medium text-gray-800 text-sm bg-gray-100"
                 >
                   性別
                 </th>
                 <th
-                  class="whitespace-nowrap px-4 py-3 title-font tracking-wider font-medium text-gray-800 text-xl bg-gray-100"
+                  class="whitespace-nowrap px-2 py-2 title-font tracking-wider font-medium text-gray-800 text-sm bg-gray-100"
                 >
                   展示の満足度
                 </th>
                 <th
-                  class="whitespace-nowrap px-4 py-3 title-font tracking-wider font-medium text-gray-800 text-xl bg-gray-100"
+                  class="whitespace-nowrap px-2 py-2 title-font tracking-wider font-medium text-gray-800 text-sm bg-gray-100"
                 >
                   印象に残った展示
                 </th>
                 <th
-                  class="whitespace-nowrap px-4 py-3 title-font tracking-wider font-medium text-gray-800 text-xl bg-gray-100"
+                  class="whitespace-nowrap px-2 py-2 title-font tracking-wider font-medium text-gray-800 text-sm bg-gray-100"
                 >
                   弊社認知度
                 </th>
                 <th
-                  class="whitespace-nowrap px-4 py-3 title-font tracking-wider font-medium text-gray-800 text-xl bg-gray-100"
+                  class="whitespace-nowrap px-2 py-2 title-font tracking-wider font-medium text-gray-800 text-sm bg-gray-100"
                 >
                   鋳造認知度
                 </th>
                 <th
-                  class="whitespace-nowrap px-4 py-3 title-font tracking-wider font-medium text-gray-800 text-xl bg-gray-100"
+                  class="whitespace-nowrap px-2 py-2 title-font tracking-wider font-medium text-gray-800 text-sm bg-gray-100 "
                 >
                   感想
                 </th>
@@ -101,34 +104,34 @@ const changeExhibition = (ans2) => {
             <tbody>
               <tr v-for="answer in answers" :key="answer.id">
                 <!-- ニックネーム -->
-                <td class="whitespace-nowrap px-8 py-16 text-xl font-mono ">
+                <td class="whitespace-nowrap px-2 py-8 text-sm font-mono ">
                   {{ answer.nickName }}
                 </td>
                 <!-- 学校 -->
-                <td class="whitespace-nowrap px-8 py-16 text-xl">
+                <td class="whitespace-nowrap px-2 py-8 text-sm">
                   {{ answer.school }}fdsfasfdsaf
                 </td>
                 <!-- 学年 -->
-                <td class="whitespace-nowrap px-8 py-16 text-xl">
+                <td class="whitespace-nowrap px-2 py-8 text-sm">
                   {{ answer.grade }}年
                 </td>
                 <!-- 性別 -->
-                <td class="whitespace-nowrap px-8 py-16 text-xl">
+                <td class="whitespace-nowrap px-2 py-8 text-sm">
                   <img
                     v-if="answer.gender == 1"
-                    class=""
+                    class="w-8"
                     src="/man.png"
                     alt=""
                   />
                   <img
                     v-if="answer.gender == 2"
-                    class=""
+                    class="w-8"
                     src="/weman.png"
                     alt=""
                   />
                 </td>
                 <!-- 展示の満足度 -->
-                <td class="whitespace-nowrap px-8 py-16 text-xl flex justify-center">
+                <td class="whitespace-nowrap px-2 py-8 text-sm flex justify-center">
                   <img
                     v-if="answer.ans1 == 1"
                     class="w-8"
@@ -161,11 +164,11 @@ const changeExhibition = (ans2) => {
                   />
                 </td>
                 <!-- 印象に残った展示 -->
-                <td class="whitespace-nowrap px-8 py-16 text-xl">
+                <td class="whitespace-nowrap px-2 py-8 text-sm">
                   {{ changeExhibition(answer.ans2) }}
                 </td>
                 <!-- 弊社認知度 -->
-                <td class="whitespace-nowrap px-8 py-16  ">
+                <td class="whitespace-nowrap px-2 py-8  ">
                   <img
                     v-if="answer.ans3 == 1"
                     class="w-8"
@@ -180,7 +183,7 @@ const changeExhibition = (ans2) => {
                   />
                 </td>
                 <!-- 鋳造認知度 -->
-                <td class="whitespace-nowrap px-8 py-16  ">
+                <td class="whitespace-nowrap px-2 py-8  ">
                   <img
                     v-if="answer.ans4 == 1"
                     class="w-8"
@@ -195,7 +198,7 @@ const changeExhibition = (ans2) => {
                   />
                 </td>
                 <!-- 感想 -->
-                <td class="px-8 py-16 text-xl w-1/4">
+                <td class="px-2 py-8 text-sm ">
                   {{ answer.ans5 }}
                 </td>
               </tr>
@@ -209,6 +212,7 @@ const changeExhibition = (ans2) => {
 
 <style>
 html {
+  font-size: 12px;
   overflow: hidden;
 }
 body {

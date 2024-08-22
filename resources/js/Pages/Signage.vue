@@ -34,7 +34,7 @@ const changeExhibition = (ans2) => {
   <main id="main_container">
     <img class="background_img" src="/signage_bk.png" alt="" />
     <h1
-      class="top_title w-full absolute top-24 font-serif text-gray-600 text-2xl text-center font-bold"
+      class="top_title w-full absolute top-24 font-serif text-gray-600 text-3xl text-center font-bold"
     >
       アンケートのご協力ありがとうございます！
     </h1>
@@ -42,12 +42,12 @@ const changeExhibition = (ans2) => {
     <section class="absolute top-24 text-gray-600 body-font w-full">
       <div class="container px-5 py-24 mx-auto">
         <div class="flex flex-col text-center w-full mb-20">
-          <h1 class="text-lg font-medium title-font text-gray-700 font-mono mb-8">
+          <h1 class="text-2xl font-medium title-font text-gray-700 font-mono mb-8">
             アンケート結果
           </h1>
-          <p class="text-base w-full mx-auto leading-relaxed font-serif ">
+          <p class="text-lg w-full mx-auto leading-relaxed font-serif px-8">
             本日のアンケート結果は、次回の展示やこれからの採用活動にて使用させていただきます。
-            なお、本日いただいたデータは外部に一切共有することはありません。
+            <br>なお、本日いただいたデータは外部に一切共有することはありません。
           </p>
         </div>
         <div class="lg:w-full w-full mx-auto overflow-auto">
@@ -55,47 +55,47 @@ const changeExhibition = (ans2) => {
             <thead>
               <tr>
                 <th
-                  class="whitespace-nowrap px-2 py-2 title-font tracking-wider font-medium text-gray-800 text-sm bg-gray-100 rounded-tl rounded-bl"
+                  class="whitespace-nowrap px-2 py-2 title-font tracking-wider font-medium text-gray-800 text-md bg-gray-100 rounded-tl rounded-bl"
                 >
                   ニックネーム
                 </th>
                 <th
-                  class="whitespace-nowrap px-2 py-2 title-font tracking-wider font-medium text-gray-800 text-sm bg-gray-100"
+                  class="whitespace-nowrap px-2 py-2 title-font tracking-wider font-medium text-gray-800 text-md bg-gray-100"
                 >
                   学校
                 </th>
                 <th
-                  class="whitespace-nowrap px-2 py-2 title-font tracking-wider font-medium text-gray-800 text-sm bg-gray-100"
+                  class="whitespace-nowrap px-2 py-2 title-font tracking-wider font-medium text-gray-800 text-md bg-gray-100"
                 >
                   学年
                 </th>
                 <th
-                  class="whitespace-nowrap px-2 py-2 title-font tracking-wider font-medium text-gray-800 text-sm bg-gray-100"
+                  class="whitespace-nowrap px-2 py-2 title-font tracking-wider font-medium text-gray-800 text-md bg-gray-100"
                 >
                   性別
                 </th>
                 <th
-                  class="whitespace-nowrap px-2 py-2 title-font tracking-wider font-medium text-gray-800 text-sm bg-gray-100"
+                  class="whitespace-nowrap px-2 py-2 title-font tracking-wider font-medium text-gray-800 text-md bg-gray-100"
                 >
                   展示の満足度
                 </th>
                 <th
-                  class="whitespace-nowrap px-2 py-2 title-font tracking-wider font-medium text-gray-800 text-sm bg-gray-100"
+                  class="whitespace-nowrap px-2 py-2 title-font tracking-wider font-medium text-gray-800 text-md bg-gray-100"
                 >
                   印象に残った展示
                 </th>
                 <th
-                  class="whitespace-nowrap px-2 py-2 title-font tracking-wider font-medium text-gray-800 text-sm bg-gray-100"
+                  class="whitespace-nowrap px-2 py-2 title-font tracking-wider font-medium text-gray-800 text-md bg-gray-100"
                 >
                   弊社認知度
                 </th>
                 <th
-                  class="whitespace-nowrap px-2 py-2 title-font tracking-wider font-medium text-gray-800 text-sm bg-gray-100"
+                  class="whitespace-nowrap px-2 py-2 title-font tracking-wider font-medium text-gray-800 text-md bg-gray-100"
                 >
                   鋳造認知度
                 </th>
                 <th
-                  class="whitespace-nowrap px-2 py-2 title-font tracking-wider font-medium text-gray-800 text-sm bg-gray-100 "
+                  class="whitespace-nowrap px-2 py-2 title-font tracking-wider font-medium text-gray-800 text-md bg-gray-100 "
                 >
                   感想
                 </th>
@@ -104,19 +104,19 @@ const changeExhibition = (ans2) => {
             <tbody>
               <tr v-for="answer in answers" :key="answer.id">
                 <!-- ニックネーム -->
-                <td class="whitespace-nowrap px-2 py-8 text-sm font-mono ">
+                <td class="whitespace-nowrap px-2 py-8 text-md font-mono ">
                   {{ answer.nickName }}
                 </td>
                 <!-- 学校 -->
-                <td class="whitespace-nowrap px-2 py-8 text-sm">
+                <td class="whitespace-nowrap px-2 py-8 text-md">
                   {{ answer.school }}fdsfasfdsaf
                 </td>
                 <!-- 学年 -->
-                <td class="whitespace-nowrap px-2 py-8 text-sm">
+                <td class="whitespace-nowrap px-2 py-8 text-md">
                   {{ answer.grade }}年
                 </td>
                 <!-- 性別 -->
-                <td class="whitespace-nowrap px-2 py-8 text-sm">
+                <td class="whitespace-nowrap px-2 py-8 text-md">
                   <img
                     v-if="answer.gender == 1"
                     class="w-8"
@@ -131,7 +131,7 @@ const changeExhibition = (ans2) => {
                   />
                 </td>
                 <!-- 展示の満足度 -->
-                <td class="whitespace-nowrap px-2 py-8 text-sm flex justify-center">
+                <td class="whitespace-nowrap px-2 py-8 text-md flex justify-center">
                   <img
                     v-if="answer.ans1 == 1"
                     class="w-8"
@@ -164,7 +164,7 @@ const changeExhibition = (ans2) => {
                   />
                 </td>
                 <!-- 印象に残った展示 -->
-                <td class="whitespace-nowrap px-2 py-8 text-sm">
+                <td class="whitespace-nowrap px-2 py-8 text-md">
                   {{ changeExhibition(answer.ans2) }}
                 </td>
                 <!-- 弊社認知度 -->
@@ -198,7 +198,7 @@ const changeExhibition = (ans2) => {
                   />
                 </td>
                 <!-- 感想 -->
-                <td class="px-2 py-8 text-sm ">
+                <td class="px-2 py-8 text-md ">
                   {{ answer.ans5 }}
                 </td>
               </tr>
@@ -212,7 +212,7 @@ const changeExhibition = (ans2) => {
 
 <style>
 html {
-  font-size: 12px;
+  font-size: 14px;
   overflow: hidden;
 }
 body {

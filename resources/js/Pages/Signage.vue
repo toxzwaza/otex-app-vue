@@ -1,9 +1,27 @@
 <script setup>
-import { onMounted } from "vue";
+import { onMounted, reactive } from "vue";
 import axios from "axios";
+const answers = reactive({});
+// defineProps({
+//   answers: Array,
+// });
 
-defineProps({
-  answers: Array,
+const getAnswers = async () => {
+    try{
+        await axios.get('/api/getAnswers')
+        .then( res => {
+            
+            console.log(res);
+            answers.value = res.data;
+
+        });
+    }catch(e){
+        console.log(e)
+    }
+};
+onMounted(() => {
+    getAnswers();
+    setInterval(getAnswers, 5000);
 });
 const changeExhibition = (ans2) => {
   let returnText = "";
@@ -29,19 +47,6 @@ const changeExhibition = (ans2) => {
   }
   return returnText;
 };
-
-
-const getAnswers = async () => {
-    try{
-        await axios.get('/api/getAnswers')
-        .then( res => {
-            console.log(res);
-        });
-    }catch(e){
-        console.log('データ取得失敗。')
-    }
-};
-
 
 </script>
 <template>
@@ -116,7 +121,7 @@ const getAnswers = async () => {
               </tr>
             </thead>
             <tbody>
-              <tr v-for="answer in answers" :key="answer.id">
+              <tr v-for="answer in answers.value" :key="answer.id">
                 <!-- ニックネーム -->
                 <td class="whitespace-nowrap px-2 py-8 text-md font-mono ">
                   {{ answer.nickName }}

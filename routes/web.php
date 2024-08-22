@@ -20,6 +20,10 @@ use Inertia\Inertia;
 Route::get('/' , [MainController::class, 'index'])->name('index');
 Route::post('/store' ,[MainController::class, 'store'])->name('store');
 
+// サイネージ画面
+Route::get('/signage', [MainController::class, 'signage'])->name('signage');
+
+
 // Route::get('/', function () {
 //     return Inertia::render('Welcome', [
 //         'canLogin' => Route::has('login'),

@@ -40,4 +40,10 @@ class MainController extends Controller
 
 
     }
+
+    public function signage(){
+        $answers = OtexQuestion::orderby('created_at','desc')->get();
+
+        return Inertia::render('Signage', ['answers' => $answers]);
+    }
 }

@@ -3,6 +3,9 @@ import MainLayout from "@/Layouts/MainLayout.vue";
 import { ref, reactive } from "vue";
 import MainLayoutVue from "@/Layouts/MainLayout.vue";
 import { router } from "@inertiajs/vue3";
+defineProps({
+  schools : Array 
+});
 
 const pageNum = ref(1);
 const form = reactive({
@@ -43,6 +46,64 @@ const backPage = () => {
     pageNum.value -= 1;
   }
 };
+
+const changeSchool = (school_id) => {
+  switch (school_id) {
+    case 1:
+      return "岡山工業";
+    case 2:
+      return "東岡工";
+    case 3:
+      return "倉敷工業";
+    case 4:
+      return "水島工業";
+    case 5:
+      return "津山工業";
+    case 6:
+      return "笠岡工業";
+    case 7:
+      return "新見";
+    case 8:
+      return "備前緑陽";
+    case 9:
+      return "高梁城南";
+    case 10:
+      return "玉野光南";
+    case 11:
+      return "倉敷工業";
+    case 12:
+      return "玉野商工";
+    case 13:
+      return "勝間田";
+    case 14:
+      return "興陽";
+    case 15:
+      return "関西";
+    case 16:
+      return "商大付属";
+    case 17:
+      return "おかやま山陽";
+    case 18:
+      return "御津";
+    case 19:
+      return "翠松";
+    case 20:
+      return "津山工専";
+    case 21:
+      return "岡山科学技術専門";
+    case 22:
+      return "岡山県立大学";
+    case 23:
+      return "中国職業能力開発大学校";
+    case 24:
+      return "第一学院";
+    case 25:
+      return "吉備高原学園";
+    case 26:
+      return "その他";
+
+  }
+}
 </script>
 <template>
   <MainLayout>
@@ -57,7 +118,7 @@ const backPage = () => {
         >
       </p>
       <p v-if="pageNum < 6" class="my-1">
-        学校： <span class="text-gray-600"> {{ form.School }}</span>
+        学校： <span class="text-gray-600"> {{ changeSchool(form.School) }}</span>
       </p>
       <p v-if="pageNum < 6" class="my-1">
         学年：
@@ -177,10 +238,10 @@ const backPage = () => {
               v-model="form.School"
               class="bg-transparent w-4/5 px-4 text-xl"
             >
-              <option value="1">学校１</option>
-              <option value="2">学校2</option>
-              <option value="3">学校3</option>
-              <option value="4">学校4</option>
+              <option v-for="school in schools" :key="school.id" :value="school.id">{{ school.name }}</option>
+
+              
+
             </select>
             <button
               @click="checkData('School', form.School)"

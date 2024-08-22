@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SchoolController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -25,6 +26,9 @@ Route::get('/signage', [MainController::class, 'signage'])->name('signage');
 
 Route::get('/api/getAnswers', [MainController::class, 'getAnswers'])->name('getAnswers');
 
+// 学校リスト作成
+Route::get('/school', [SchoolController::class, 'create'])->name('school.create');
+Route::post('/store/school', [SchoolController::class, 'store'])->name('store.school');
 
 // Route::get('/', function () {
 //     return Inertia::render('Welcome', [

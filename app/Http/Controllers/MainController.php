@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\OtexQuestion;
+use App\Models\School;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -10,7 +11,9 @@ class MainController extends Controller
 {
     //
     public function index(){
-        return Inertia::render('Index');
+        $schools = School::orderby('id','asc')->get();
+
+        return Inertia::render('Index', ['schools' => $schools ]);
     }
     public function store(Request $request){
         $NickName = $request->NickName;

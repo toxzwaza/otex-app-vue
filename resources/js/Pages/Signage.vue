@@ -7,21 +7,18 @@ const answers = reactive({});
 // });
 
 const getAnswers = async () => {
-    try{
-        await axios.get('/api/getAnswers')
-        .then( res => {
-            
-            console.log(res);
-            answers.value = res.data;
-
-        });
-    }catch(e){
-        console.log(e)
-    }
+  try {
+    await axios.get("/api/getAnswers").then((res) => {
+      console.log(res);
+      answers.value = res.data;
+    });
+  } catch (e) {
+    console.log(e);
+  }
 };
 onMounted(() => {
-    getAnswers();
-    setInterval(getAnswers, 5000);
+  getAnswers();
+  setInterval(getAnswers, 5000);
 });
 const changeExhibition = (ans2) => {
   let returnText = "";
@@ -47,7 +44,6 @@ const changeExhibition = (ans2) => {
   }
   return returnText;
 };
-
 </script>
 <template>
   <main id="main_container">
@@ -61,18 +57,26 @@ const changeExhibition = (ans2) => {
     <section class="absolute top-24 text-gray-600 body-font w-full">
       <div class="container px-5 py-24 mx-auto">
         <div class="flex flex-col text-center w-full mb-20">
-          <h1 class="text-2xl font-medium title-font text-gray-700 font-mono mb-8">
+          <h1
+            class="text-2xl font-medium title-font text-gray-700 font-mono mb-8"
+          >
             アンケート結果
           </h1>
           <p class="text-lg w-full mx-auto leading-relaxed font-serif px-8">
             本日のアンケート結果は、次回の展示やこれからの採用活動にて使用させていただきます。
-            <br>なお、本日いただいたデータは外部に一切共有することはありません。
+            <br />なお、本日いただいたデータは外部に一切共有することはありません。
           </p>
         </div>
         <div class="lg:w-full w-full mx-auto overflow-auto">
           <table class="table-auto w-full text-left whitespace-no-wrap">
             <thead>
               <tr>
+                <th
+                  class="whitespace-nowrap px-2 py-2 title-font tracking-wider font-medium text-gray-800 text-md bg-gray-100"
+                >
+                  性別
+                </th>
+
                 <th
                   class="whitespace-nowrap px-2 py-2 title-font tracking-wider font-medium text-gray-800 text-md bg-gray-100 rounded-tl rounded-bl"
                 >
@@ -81,18 +85,14 @@ const changeExhibition = (ans2) => {
                 <th
                   class="whitespace-nowrap px-2 py-2 title-font tracking-wider font-medium text-gray-800 text-md bg-gray-100"
                 >
-                  学校
+                  学校・職種
                 </th>
-                <th
+                <!-- <th
                   class="whitespace-nowrap px-2 py-2 title-font tracking-wider font-medium text-gray-800 text-md bg-gray-100"
                 >
                   学年
-                </th>
-                <th
-                  class="whitespace-nowrap px-2 py-2 title-font tracking-wider font-medium text-gray-800 text-md bg-gray-100"
-                >
-                  性別
-                </th>
+                </th> -->
+
                 <th
                   class="whitespace-nowrap px-2 py-2 title-font tracking-wider font-medium text-gray-800 text-md bg-gray-100"
                 >
@@ -103,7 +103,7 @@ const changeExhibition = (ans2) => {
                 >
                   印象に残った展示
                 </th>
-                <th
+                <!-- <th
                   class="whitespace-nowrap px-2 py-2 title-font tracking-wider font-medium text-gray-800 text-md bg-gray-100"
                 >
                   弊社認知度
@@ -112,9 +112,9 @@ const changeExhibition = (ans2) => {
                   class="whitespace-nowrap px-2 py-2 title-font tracking-wider font-medium text-gray-800 text-md bg-gray-100"
                 >
                   鋳造認知度
-                </th>
+                </th> -->
                 <th
-                  class="whitespace-nowrap px-2 py-2 title-font tracking-wider font-medium text-gray-800 text-md bg-gray-100 "
+                  class="whitespace-nowrap px-2 py-2 title-font tracking-wider font-medium text-gray-800 text-md bg-gray-100"
                 >
                   感想
                 </th>
@@ -122,18 +122,6 @@ const changeExhibition = (ans2) => {
             </thead>
             <tbody>
               <tr v-for="answer in answers.value" :key="answer.id">
-                <!-- ニックネーム -->
-                <td class="whitespace-nowrap px-2 py-8 text-md font-mono ">
-                  {{ answer.nickName }}
-                </td>
-                <!-- 学校 -->
-                <td class="whitespace-nowrap px-2 py-8 text-md">
-                  {{ answer.school }}fdsfasfdsaf
-                </td>
-                <!-- 学年 -->
-                <td class="whitespace-nowrap px-2 py-8 text-md">
-                  {{ answer.grade }}年
-                </td>
                 <!-- 性別 -->
                 <td class="whitespace-nowrap px-2 py-8 text-md">
                   <img
@@ -149,8 +137,24 @@ const changeExhibition = (ans2) => {
                     alt=""
                   />
                 </td>
+
+                <!-- ニックネーム -->
+                <td class="whitespace-nowrap px-2 py-8 text-md font-mono">
+                  {{ answer.nickName }}
+                </td>
+                <!-- 学校 -->
+                <td class="whitespace-nowrap px-2 py-8 text-md">
+                  {{ answer.name }}
+                </td>
+                <!-- 学年 -->
+                <!-- <td class="whitespace-nowrap px-2 py-8 text-md">
+                  {{ answer.grade }}年
+                </td> -->
+
                 <!-- 展示の満足度 -->
-                <td class="whitespace-nowrap px-2 py-8 text-md flex justify-center">
+                <td
+                  class="whitespace-nowrap px-2 py-8 text-md flex justify-center"
+                >
                   <img
                     v-if="answer.ans1 == 1"
                     class="w-8"
@@ -187,7 +191,7 @@ const changeExhibition = (ans2) => {
                   {{ changeExhibition(answer.ans2) }}
                 </td>
                 <!-- 弊社認知度 -->
-                <td class="whitespace-nowrap px-2 py-8  ">
+                <!-- <td class="whitespace-nowrap px-2 py-8  ">
                   <img
                     v-if="answer.ans3 == 1"
                     class="w-8"
@@ -200,9 +204,9 @@ const changeExhibition = (ans2) => {
                     src="/ng.png"
                     alt=""
                   />
-                </td>
+                </td> -->
                 <!-- 鋳造認知度 -->
-                <td class="whitespace-nowrap px-2 py-8  ">
+                <!-- <td class="whitespace-nowrap px-2 py-8  ">
                   <img
                     v-if="answer.ans4 == 1"
                     class="w-8"
@@ -215,9 +219,9 @@ const changeExhibition = (ans2) => {
                     src="/ng.png"
                     alt=""
                   />
-                </td>
+                </td> -->
                 <!-- 感想 -->
-                <td class="px-2 py-8 text-md ">
+                <td class="px-2 py-8 text-md w-1/4">
                   {{ answer.ans5 }}
                 </td>
               </tr>

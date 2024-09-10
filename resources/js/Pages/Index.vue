@@ -4,15 +4,21 @@ import { ref, reactive } from "vue";
 import MainLayoutVue from "@/Layouts/MainLayout.vue";
 import { router } from "@inertiajs/vue3";
 defineProps({
-  schools : Array 
+  schools: Array,
+  companies: Array,
 });
 
 const pageNum = ref(1);
 const form = reactive({
   NickName: null,
   Gender: null,
+  isStudent: null,
+  // 社会人の場合
+
+  // 学生の場合
   School: null,
   Grade: null,
+
   Answer1: null,
   Answer2: null,
   Answer3: null,
@@ -22,14 +28,21 @@ const form = reactive({
 
 const storeForm = () => {
   router.post(route("store"), form, {
-    onBefore: ()=> {
-      confirm('登録しますか？')
-    }
+    onBefore: () => {
+      confirm("登録しますか？");
+    },
   });
 };
 
 const checkData = (param, el) => {
+  console.log(param);
+
   if (el) {
+    if (param === "Company") {
+      changePage(6);
+      return;
+    }
+
     changePage();
   } else {
     console.log(param);
@@ -37,8 +50,12 @@ const checkData = (param, el) => {
     element.classList.add("vibration-animation");
   }
 };
-const changePage = () => {
-  pageNum.value += 1;
+const changePage = (numNo) => {
+  if (!numNo) {
+    pageNum.value += 1;
+  } else {
+    pageNum.value = numNo;
+  }
   console.log(pageNum.value);
 };
 const backPage = () => {
@@ -101,9 +118,8 @@ const changeSchool = (school_id) => {
       return "吉備高原学園";
     case 26:
       return "その他";
-
   }
-}
+};
 </script>
 <template>
   <MainLayout>
@@ -118,7 +134,8 @@ const changeSchool = (school_id) => {
         >
       </p>
       <p v-if="pageNum < 6" class="my-1">
-        学校： <span class="text-gray-600"> {{ changeSchool(form.School) }}</span>
+        学校：
+        <span class="text-gray-600"> {{ changeSchool(form.School) }}</span>
       </p>
       <p v-if="pageNum < 6" class="my-1">
         学年：
@@ -182,31 +199,31 @@ const changeSchool = (school_id) => {
           <div class="flex justify-around items-center mb-8">
             <p class="w-1/2 flex justify-around">
               <span class="flex items-center">
-              <label class="mr-2 text-xl text-gray-600" for="gender1"
-                >男性</label
-              >
-              <input
-                type="radio"
-                name="Gender"
-                v-model="form.Gender"
-                id="gender1"
-                value="1"
-                class="input_radio ml-1"
-              />
+                <label class="mr-2 text-xl text-gray-600" for="gender1"
+                  >男性</label
+                >
+                <input
+                  type="radio"
+                  name="Gender"
+                  v-model="form.Gender"
+                  id="gender1"
+                  value="1"
+                  class="input_radio ml-1"
+                />
               </span>
 
               <span class="flex items-center">
-              <label class="mr-2 text-xl text-gray-600" for="gender2"
-                >女性</label
-              >
-              <input
-                type="radio"
-                name="Gender"
-                v-model="form.Gender"
-                id="gender2"
-                value="2"
-                class="input_radio ml-1"
-              />
+                <label class="mr-2 text-xl text-gray-600" for="gender2"
+                  >女性</label
+                >
+                <input
+                  type="radio"
+                  name="Gender"
+                  v-model="form.Gender"
+                  id="gender2"
+                  value="2"
+                  class="input_radio ml-1"
+                />
               </span>
             </p>
             <button
@@ -228,6 +245,59 @@ const changeSchool = (school_id) => {
             id="School"
             class="mb-8 text-2xl text-center font-bold text-gray-600 font-serif"
           >
+            学生ですか？
+          </p>
+
+          <div class="flex justify-around items-center mb-8">
+            <p class="w-1/2 flex justify-around">
+              <span class="flex items-center">
+                <label class="mr-2 text-xl text-gray-600" for="yes">はい</label>
+                <input
+                  type="radio"
+                  name="yes"
+                  v-model="form.isStudent"
+                  id="yes"
+                  value="1"
+                  class="input_radio ml-1"
+                />
+              </span>
+
+              <span class="flex items-center">
+                <label class="mr-2 text-xl text-gray-600" for="no"
+                  >いいえ</label
+                >
+                <input
+                  type="radio"
+                  name="no"
+                  v-model="form.isStudent"
+                  id="no"
+                  value="0"
+                  class="input_radio ml-1"
+                />
+              </span>
+            </p>
+            <button
+              @click="checkData('Gender', form.Gender)"
+              type="button"
+              class="bg-red-400 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+            >
+              登録
+            </button>
+          </div>
+
+          <img
+            class="max-h-72 opacity-20 w-45 mx-auto"
+            src="/school.png"
+            alt=""
+          />
+        </div>
+
+        <!-- 学生の場合 -->
+        <div v-if="form.isStudent == 1 && pageNum == 4">
+          <p
+            id="School"
+            class="mb-8 text-2xl text-center font-bold text-gray-600 font-serif"
+          >
             学校を教えてください。
           </p>
 
@@ -238,10 +308,13 @@ const changeSchool = (school_id) => {
               v-model="form.School"
               class="bg-transparent w-4/5 px-4 text-xl"
             >
-              <option v-for="school in schools" :key="school.id" :value="school.id">{{ school.name }}</option>
-
-              
-
+              <option
+                v-for="school in schools"
+                :key="school.id"
+                :value="school.id"
+              >
+                {{ school.name }}
+              </option>
             </select>
             <button
               @click="checkData('School', form.School)"
@@ -258,7 +331,7 @@ const changeSchool = (school_id) => {
             alt=""
           />
         </div>
-        <div v-if="pageNum == 4">
+        <div v-if="form.isStudent == 1 && pageNum == 5">
           <p
             id="Grade"
             class="mb-8 text-2xl text-center font-bold text-gray-600 font-serif mb-4"
@@ -292,7 +365,52 @@ const changeSchool = (school_id) => {
             alt=""
           />
         </div>
-        <div v-if="pageNum == 5">
+
+        <!-- 社会人の場合 -->
+        <div v-if="form.isStudent == 0 && pageNum == 4">
+          <p
+            id="Company"
+            class="mb-8 text-2xl text-center font-bold text-gray-600 font-serif"
+          >
+            職種を教えてください。
+          </p>
+
+          <div class="flex justify-between mb-8">
+            <select
+              id=""
+              name="School"
+              v-model="form.School"
+              class="bg-transparent w-4/5 px-4 text-xl"
+            >
+              <option
+                v-for="company in companies"
+                :key="company.id"
+                :value="company.id"
+              >
+                {{ company.name }}
+              </option>
+            </select>
+            <button
+              @click="checkData('Company', form.School)"
+              type="button"
+              class="bg-red-400 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+            >
+              登録
+            </button>
+          </div>
+
+          <img
+            class="max-h-72 opacity-20 w-45 mx-auto"
+            src="/school.png"
+            alt=""
+          />
+        </div>
+
+
+
+        
+
+        <div v-if="pageNum == 6">
           <p
             class="text-xl text-center text-gray-600 font-serif mb-16 whitespace-nowrap"
           >
@@ -582,8 +700,8 @@ const changeSchool = (school_id) => {
   animation: float 3s ease-in-out infinite;
 }
 
-.input_radio{
-  transform:scale(1.6);
+.input_radio {
+  transform: scale(1.6);
   accent-color: red;
 }
 </style>

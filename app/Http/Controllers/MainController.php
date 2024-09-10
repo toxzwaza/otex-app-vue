@@ -11,9 +11,10 @@ class MainController extends Controller
 {
     //
     public function index(){
-        $schools = School::orderby('id','asc')->get();
+        $schools = School::where('isCompany', 0)->orderby('id','asc')->get();
+        $companies = School::where('isCompany', 1)->orderby('id','asc')->get();
 
-        return Inertia::render('Index', ['schools' => $schools ]);
+        return Inertia::render('Index', ['schools' => $schools , 'companies' => $companies]);
     }
     public function store(Request $request){
         $NickName = $request->NickName;
@@ -45,13 +46,14 @@ class MainController extends Controller
     }
 
     public function signage(){
-        $answers = OtexQuestion::orderby('created_at','desc')->get();
+        $answers = OtexQuestion::select('otex_questions.*','schools.name')->join('schools','schools.id','otex_questions.school')->orderby('created_at','desc')->get();
 
         return Inertia::render('Signage', ['answers' => $answers]);
     }
 
     public function getAnswers(){
-        $answers = OtexQuestion::orderby('created_at','desc')->get();
+        $answers = OtexQuestion::select('otex_questions.*','schools.name')->join('schools','schools.id','otex_questions.school')->orderby('created_at','desc')->get();
+
         return $answers;
     }
 }

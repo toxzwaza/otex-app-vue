@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\MainController;
+use App\Http\Controllers\MusicController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SchoolController;
 use Illuminate\Foundation\Application;
@@ -29,6 +30,10 @@ Route::get('/api/getAnswers', [MainController::class, 'getAnswers'])->name('getA
 // 学校リスト作成
 Route::get('/school', [SchoolController::class, 'create'])->name('school.create');
 Route::post('/store/school', [SchoolController::class, 'store'])->name('store.school');
+
+
+// 打音検査アプリ
+Route::get('/music', [MusicController::class, 'index']);
 
 // Route::get('/', function () {
 //     return Inertia::render('Welcome', [

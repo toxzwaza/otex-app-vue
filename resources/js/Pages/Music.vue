@@ -57,96 +57,76 @@ const playDemoMusic = async (soundImg) => {
 
   document.removeEventListener("click", handleClick);
 };
-
-
-// 10分毎にでもミュージックを流す
-
-let timeout;
-
-const resetTimeout = () => {
-  clearTimeout(timeout);
-  timeout = setTimeout(() => {
-    playDemoMusic(document.querySelectorAll(".soundImg"));
-  }, 600000);
-};
-
-document.addEventListener("click", resetTimeout);
-
-onMounted(() => {
-  const soundImg = document.querySelectorAll(".soundImg");
-  console.log(soundImg, soundImg[0]);
-
-  setTimeout(playDemoMusic(soundImg));
-  resetTimeout(); // 初期タイムアウトを設定
-});
-
 </script>
 <template>
   <main id="main" class="py-32">
-    <div id="title" class="w-full">
-      <img class="w-2/3 mx-auto" src="/d_title.png" alt="" />
+    <div id="title" class="w-full text-center">
+      <img class="w-2/4 mx-auto" src="/d_title.png" alt="" />
+      <button
+        class="mt-8 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+      >
+       サンプル再生
+      </button>
     </div>
 
     <div class="flex items-center justify-center mt-20 my-10">
       <img
         @click="startSound(1, $event.target)"
-        class="soundImg w-32"
+        class="soundImg w-28"
         src="/d_1.png"
         alt=""
       />
       <img
         @click="startSound(2, $event.target)"
-        class="soundImg w-32"
+        class="soundImg w-28"
         src="/d_2.png"
         alt=""
       />
       <img
         @click="startSound(3, $event.target)"
-        class="soundImg w-32"
+        class="soundImg w-28"
         src="/d_3.png"
         alt=""
       />
       <img
         @click="startSound(4, $event.target)"
-        class="soundImg w-32"
+        class="soundImg w-28"
         src="/d_4.png"
         alt=""
       />
       <img
         @click="startSound(5, $event.target)"
-        class="soundImg w-32"
+        class="soundImg w-28"
         src="/d_5.png"
         alt=""
       />
       <img
         @click="startSound(6, $event.target)"
-        class="soundImg w-32"
+        class="soundImg w-28"
         src="/d_6.png"
         alt=""
       />
       <img
         @click="startSound(7, $event.target)"
-        class="soundImg w-32"
+        class="soundImg w-28"
         src="/d_7.png"
         alt=""
       />
       <img
         @click="startSound(8, $event.target)"
-        class="soundImg w-32"
+        class="soundImg w-28"
         src="/d_8.png"
         alt=""
       />
     </div>
 
     <div id="footer" class="mb-4 flex items-center justify-between">
-      <img class="w-64 ml-24" src="/gif/01.gif" alt="" />
+      <img class="w-48 ml-24" src="/gif/01.gif" alt="" />
 
-      <img id="walk_animation" class="w-64" src="/gif/02.gif" alt="" />
-
-      <!-- <img class="mx-auto w-3/5" src="/d_foot.png" alt=""> -->
+      <img id="walk_animation" class="w-48" src="/gif/02.gif" alt="" />
     </div>
   </main>
-  <!-- <img src="/d_title.png " alt="" /> -->
+
 </template>
 <style >
 #main {

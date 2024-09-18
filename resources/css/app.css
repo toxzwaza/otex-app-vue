@@ -44,19 +44,19 @@ body {
 #container #form_container #ans2 {
   position: absolute;
   left: 13%;
-  top: 42%;
+  top: 41%;
   z-index: 1;
 }
 #container #form_container #ans3 {
   position: absolute;
   left: 13%;
-  top: 53%;
+  top: 51%;
   z-index: 1;
 }
 #container #form_container #ans4 {
   position: absolute;
   left: 13%;
-  top: 64%;
+  top: 60%;
   z-index: 1;
 }
 #container #form_container #ans5 {

@@ -26,7 +26,14 @@ class MainController extends Controller
         $Answer3 = $request->Answer3;
         $Answer4 = $request->Answer4;
         $Answer5 = $request->Answer5;
-        // dd($Answer1);
+        if($Answer4){
+            $text = "";
+            foreach($Answer4 as $ans4){
+                $text .= $ans4 . ',';
+            }
+            $Answer4 = rtrim($text, ',');
+        }
+
         
         OtexQuestion::create([
             'nickName' => $NickName,

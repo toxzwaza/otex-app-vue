@@ -22,7 +22,7 @@ const form = reactive({
   Answer1: null,
   Answer2: null,
   Answer3: null,
-  Answer4: null,
+  Answer4: [],
   Answer5: null,
 });
 
@@ -120,10 +120,23 @@ const changeSchool = (school_id) => {
       return "その他";
   }
 };
+
+const addAns4Array = (val) => {
+
+  if (!form.Answer4.includes(val)) {
+    form.Answer4.push(val);
+  }else{
+    const index = form.Answer4.indexOf(val);
+    if (index > -1) {
+      form.Answer4.splice(index, 1);
+    }
+  }
+  console.log(form.Answer4);
+}
 </script>
 <template>
   <MainLayout>
-    <div v-if="form.NickName != null" id="input_div" class="px-4 py-4 bg-white">
+    <div v-if="false" id="input_div" class="px-4 py-4 bg-white">
       <p class="my-1">
         ニックネーム： <span class="text-gray-600"> {{ form.NickName }}</span>
       </p>
@@ -406,10 +419,6 @@ const changeSchool = (school_id) => {
           />
         </div>
 
-
-
-        
-
         <div v-if="pageNum == 6">
           <p
             class="text-xl text-center text-gray-600 font-serif mb-16 whitespace-nowrap"
@@ -417,7 +426,7 @@ const changeSchool = (school_id) => {
             続いて本日の展示会のアンケートに進みます。
           </p>
 
-          <div class="baner_container" @click="changePage">
+          <div class="baner_container" @click="changePage(7)">
             <img src="/baner.png" alt="" />
             <img
               src="/hand.png"
@@ -437,164 +446,202 @@ const changeSchool = (school_id) => {
         一つ前に戻る
       </button>
 
-      <div v-if="pageNum == 6">
+      <div v-if="pageNum == 7">
         <div id="container" class="bg_container">
-          <img src="/background.png" alt="" />
+          <img class="" src="/bg_01.png" alt="" />
+
           <div id="form_container">
-            <div id="ans1" class="flex items-center">
-              <label
-                class="mr-2 text-md whitespace-nowrap w-1/6 flex items-center"
-                for="ans1_1"
-                >大変良い<input
-                  class="ml-2"
-                  type="radio"
-                  name="ans1"
-                  id="ans1_1"
-                  value="5"
-                  v-model="form.Answer1"
-              /></label>
-              <label
-                class="mr-2 text-md whitespace-nowrap w-1/6 flex items-center"
-                for="ans1_2"
-                >良い<input
-                  class="ml-2"
-                  type="radio"
-                  name="ans1"
-                  id="ans1_2"
-                  value="4"
-                  v-model="form.Answer1"
-              /></label>
-              <label
-                class="mr-2 text-md whitespace-nowrap w-1/6 flex items-center"
-                for="ans1_3"
-                >普通<input
-                  class="ml-2"
-                  type="radio"
-                  name="ans1"
-                  id="ans1_3"
-                  value="3"
-                  v-model="form.Answer1"
-              /></label>
-              <label
-                class="mr-2 text-md whitespace-nowrap w-1/6 flex items-center"
-                for="ans1_4"
-                >やや不満<input
-                  class="ml-2"
-                  type="radio"
-                  name="ans1"
-                  id="ans1_4"
-                  value="2"
-                  v-model="form.Answer1"
-              /></label>
-              <label
-                class="mr-2 text-md whitespace-nowrap w-1/6 flex items-center"
-                for="ans1_5"
-                >不満<input
-                  class="ml-2"
-                  type="radio"
-                  name="ans1"
-                  id="ans1_5"
-                  value="1"
-                  v-model="form.Answer1"
-              /></label>
+            <div id="ans1" class="">
+              <p class="mb-2 text-red-900">展示の満足度</p>
+              <div class="label_container flex items-center">
+                <label
+                  class="mr-2 text-md whitespace-nowrap w-1/6 flex items-center"
+                  for="ans1_1"
+                  >大変良い<input
+                    class="ml-2"
+                    type="radio"
+                    name="ans1"
+                    id="ans1_1"
+                    value="5"
+                    v-model="form.Answer1"
+                /></label>
+                <label
+                  class="mr-2 text-md whitespace-nowrap w-1/6 flex items-center"
+                  for="ans1_2"
+                  >良い<input
+                    class="ml-2"
+                    type="radio"
+                    name="ans1"
+                    id="ans1_2"
+                    value="4"
+                    v-model="form.Answer1"
+                /></label>
+                <label
+                  class="mr-2 text-md whitespace-nowrap w-1/6 flex items-center"
+                  for="ans1_3"
+                  >普通<input
+                    class="ml-2"
+                    type="radio"
+                    name="ans1"
+                    id="ans1_3"
+                    value="3"
+                    v-model="form.Answer1"
+                /></label>
+                <label
+                  class="mr-2 text-md whitespace-nowrap w-1/6 flex items-center"
+                  for="ans1_4"
+                  >やや不満<input
+                    class="ml-2"
+                    type="radio"
+                    name="ans1"
+                    id="ans1_4"
+                    value="2"
+                    v-model="form.Answer1"
+                /></label>
+                <label
+                  class="mr-2 text-md whitespace-nowrap w-1/6 flex items-center"
+                  for="ans1_5"
+                  >不満<input
+                    class="ml-2"
+                    type="radio"
+                    name="ans1"
+                    id="ans1_5"
+                    value="1"
+                    v-model="form.Answer1"
+                /></label>
+              </div>
             </div>
 
-            <div id="ans2" class="flex items-center">
-              <label
-                class="mr-6 text-md whitespace-nowrap w-1/6 flex items-center"
-                for="ans1_1"
-                >砂込め体験<input
-                  class="ml-2"
-                  type="radio"
-                  name="ans2"
-                  id="ans1_1"
-                  value="4"
-                  v-model="form.Answer2"
-              /></label>
-              <label
-                class="mr-6 text-md whitespace-nowrap w-1/6 flex items-center"
-                for="ans1_2"
-                >内視鏡検査<input
-                  class="ml-2"
-                  type="radio"
-                  name="ans2"
-                  id="ans1_2"
-                  value="3"
-                  v-model="form.Answer2"
-              /></label>
-              <label
-                class="mr-6 text-md whitespace-nowrap w-1/6 flex items-center"
-                for="ans1_3"
-                >ハニ造音検査<input
-                  class="ml-2"
-                  type="radio"
-                  name="ans2"
-                  id="ans1_3"
-                  value="2"
-                  v-model="form.Answer2"
-              /></label>
-              <label
-                class="mr-6 text-md whitespace-nowrap w-1/6 flex items-center"
-                for="ans1_4"
-                >DX化<input
-                  class="ml-2"
-                  type="radio"
-                  name="ans2"
-                  id="ans1_4"
-                  value="1"
-                  v-model="form.Answer2"
-              /></label>
+            <div id="ans2" class="">
+              <p class="mb-2 text-red-900">
+                一番印象に残った展示を教えてください。
+              </p>
+              <div class="label_container flex items-center">
+                <label
+                  class="mr-6 text-md whitespace-nowrap w-1/6 flex items-center"
+                  for="ans2_1"
+                  >砂込め体験<input
+                    class="ml-2"
+                    type="radio"
+                    name="ans2"
+                    id="ans2_1"
+                    value="4"
+                    v-model="form.Answer2"
+                /></label>
+                <label
+                  class="mr-6 text-md whitespace-nowrap w-1/6 flex items-center"
+                  for="ans2_2"
+                  >内視鏡検査<input
+                    class="ml-2"
+                    type="radio"
+                    name="ans2"
+                    id="ans2_2"
+                    value="3"
+                    v-model="form.Answer2"
+                /></label>
+                <label
+                  class="mr-6 text-md whitespace-nowrap w-1/6 flex items-center"
+                  for="ans2_3"
+                  >ハニ造音検査<input
+                    class="ml-2"
+                    type="radio"
+                    name="ans2"
+                    id="ans2_3"
+                    value="2"
+                    v-model="form.Answer2"
+                /></label>
+                <label
+                  class="mr-6 text-md whitespace-nowrap w-1/6 flex items-center"
+                  for="ans2_4"
+                  >DX化<input
+                    class="ml-2"
+                    type="radio"
+                    name="ans2"
+                    id="ans2_4"
+                    value="1"
+                    v-model="form.Answer2"
+                /></label>
+              </div>
             </div>
-            <div id="ans3" class="flex items-center">
-              <label
-                class="mr-2 text-md whitespace-nowrap w-1/6 flex items-center"
-                for="ans1_1"
-                >はい<input
-                  class="ml-2"
-                  type="radio"
-                  name="ans3"
-                  id="ans1_1"
-                  v-model="form.Answer3"
-                  value="1"
-              /></label>
-              <label
-                class="mr-2 text-md whitespace-nowrap w-1/6 flex items-center"
-                for="ans1_2"
-                >いいえ<input
-                  class="ml-2"
-                  type="radio"
-                  name="ans3"
-                  id="ans1_2"
-                  v-model="form.Answer3"
-                  value="2"
-              /></label>
+
+            <div id="ans3" class="">
+              <p class="mb-2 text-red-900">
+                学校で鋳造の授業を受けたことがありますか？
+              </p>
+              <div class="label_container flex items-center">
+                <label
+                  class="mr-2 text-md whitespace-nowrap w-1/6 flex items-center"
+                  for="ans3_1"
+                  >はい<input
+                    class="ml-2"
+                    type="radio"
+                    name="ans3"
+                    id="ans3_1"
+                    v-model="form.Answer3"
+                    value="1"
+                /></label>
+                <label
+                  class="mr-2 text-md whitespace-nowrap w-1/6 flex items-center"
+                  for="ans3_2"
+                  >いいえ<input
+                    class="ml-2"
+                    type="radio"
+                    name="ans3"
+                    id="ans3_2"
+                    v-model="form.Answer3"
+                    value="2"
+                /></label>
+              </div>
             </div>
-            <div id="ans4" class="flex items-center">
-              <label
-                class="mr-2 text-md whitespace-nowrap w-1/6 flex items-center"
-                for="ans1_1"
-                >はい<input
-                  class="ml-2"
-                  type="radio"
-                  name="ans4"
-                  id="ans1_1"
-                  v-model="form.Answer4"
-                  value="1"
-              /></label>
-              <label
-                class="mr-2 text-md whitespace-nowrap w-1/6 flex items-center"
-                for="ans1_2"
-                >いいえ<input
-                  class="ml-2"
-                  type="radio"
-                  name="ans4"
-                  id="ans1_2"
-                  v-model="form.Answer4"
-                  value="2"
-              /></label>
+            <div v-if="form.Answer3 === '1'" id="ans4" class="">
+              <p class="mb-2 text-red-900">
+                鋳造の授業ではどんなことをしましたか？<span class="text-sm ml-2"
+                  >(複数回答可)</span
+                >
+              </p>
+              <div class="label_container flex items-center">
+                <label
+                  class="mr-2 text-md whitespace-nowrap w-1/6 flex items-center"
+                  for="ans4_1"
+                  >実技<input
+                    class="ml-2"
+                    type="checkbox"
+                    name="ans4"
+                    id="ans4_1"
+                    @change="addAns4Array($event.target.value)"
+                    value="実技"
+                /></label>
+                <label
+                  class="mr-2 text-md whitespace-nowrap w-1/6 flex items-center"
+                  for="ans4_2"
+                  >座学<input
+                    class="ml-2"
+                    type="checkbox"
+                    name="ans4"
+                    id="ans4_2"
+                    @change="addAns4Array($event.target.value)"
+                    value="座学"
+                /></label>
+                <label
+                  class="mr-2 text-md whitespace-nowrap w-1/6 flex items-center"
+                  for="ans4_3"
+                  >工場見学<input
+                    class="ml-2"
+                    type="checkbox"
+                    name="ans4"
+                    id="ans4_3"
+                    @change="addAns4Array($event.target.value)"
+                    value="工場見学"
+                /></label>
+              </div>
+
             </div>
             <div id="ans5" class="w-full">
+              <p class="mb-2 text-red-900">
+                感想がありましたらお聞かせください。
+              </p>
               <textarea
+                class="w-full"
                 name="ans5"
                 id=""
                 rows="4"
@@ -652,6 +699,7 @@ const changeSchool = (school_id) => {
 .bg_container {
   height: 100%;
   width: 100%;
+  position: fixed;
 }
 .bg_container img {
   height: 100%;

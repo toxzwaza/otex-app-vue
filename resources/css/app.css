@@ -38,31 +38,31 @@ body {
 #container #form_container #ans1 {
   position: absolute;
   left: 13%;
-  top: 31%;
+  top: 27%;
   z-index: 1;
 }
 #container #form_container #ans2 {
   position: absolute;
   left: 13%;
-  top: 41%;
+  top: 37%;
   z-index: 1;
 }
 #container #form_container #ans3 {
   position: absolute;
   left: 13%;
-  top: 51%;
+  top: 47%;
   z-index: 1;
 }
 #container #form_container #ans4 {
   position: absolute;
   left: 13%;
-  top: 60%;
+  top: 57%;
   z-index: 1;
 }
 #container #form_container #ans5 {
   position: absolute;
   left: 13%;
-  top: 75%;
+  top: 65%;
   z-index: 1;
 }
 #container #form_container #ans5 textarea {
@@ -74,7 +74,7 @@ body {
 }
 #container #form_container #button {
   position: absolute;
-  bottom: 8%;
+  bottom: 12%;
   right: 10%;
   border: 1px solid #5e5e5e;
   border-radius: 5px;

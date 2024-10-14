@@ -22,7 +22,9 @@ const getCount = () => {
     .catch((e) => {
       if (confirm("カウント取得でエラーが発生しました。再度実行しますか？")) {
         getCount();
+        return;
       }
+      status.value = true;
     });
 };
 

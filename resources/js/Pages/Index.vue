@@ -453,7 +453,7 @@ const addAns4Array = (val) => {
           <div id="form_container">
             <div id="ans1" class="">
               <p class="mb-2 text-red-900">展示の満足度</p>
-              <div class="label_container flex items-center">
+              <div class="label_container flex justify-between items-center">
                 <label
                   class="mr-2 text-md whitespace-nowrap w-1/6 flex items-center"
                   for="ans1_1"
@@ -516,7 +516,7 @@ const addAns4Array = (val) => {
               <p class="mb-2 text-red-900">
                 一番印象に残った展示を教えてください。
               </p>
-              <div class="label_container flex items-center">
+              <div class="label_container flex justify-between items-center">
                 <label
                   class="mr-6 text-md whitespace-nowrap w-1/6 flex items-center"
                   for="ans2_1"
@@ -644,7 +644,7 @@ const addAns4Array = (val) => {
                 class="w-full"
                 name="ans5"
                 id=""
-                rows="4"
+                rows="3"
                 cols="33"
                 v-model="form.Answer5"
               ></textarea>

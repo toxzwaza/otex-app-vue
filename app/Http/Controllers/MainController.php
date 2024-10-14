@@ -29,7 +29,7 @@ class MainController extends Controller
         // dd($Answer4);
 
         if($Answer4){
-            dd('実行');
+            // dd('実行');
 
             $text = "";
             foreach($Answer4 as $ans4){

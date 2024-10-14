@@ -11,8 +11,10 @@ const startSound = (num, e) => {
     e.classList.remove("active");
   }, 400);
 };
-const playDemoMusic = async (soundImg) => {
+const playDemoMusic = async () => {
   let interrupted = false;
+  const soundImg  = document.querySelectorAll('.soundImg');
+
 
   const handleClick = () => {
     interrupted = true;
@@ -62,11 +64,11 @@ const playDemoMusic = async (soundImg) => {
   <main id="main" class="py-32">
     <div id="title" class="w-full text-center">
       <img class="w-2/4 mx-auto" src="/d_title.png" alt="" />
-      <button
+      <!-- <button @click="playDemoMusic"
         class="mt-8 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
       >
        サンプル再生
-      </button>
+      </button> -->
     </div>
 
     <div class="flex items-center justify-center mt-20 my-10">

@@ -13,11 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('user_attributes', function (Blueprint $table) {
+        Schema::create('count_users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');      
-
+            $table->unsignedBigInteger('user_attribute_id');
             $table->timestamps();
+
+            $table->foreign('user_attribute_id')->references('id')->on('user_attributes')->onDelete('cascade');
+
         });
     }
 
@@ -28,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_attributes');
+        Schema::dropIfExists('count_users');
     }
 };

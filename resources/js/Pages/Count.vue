@@ -45,14 +45,14 @@ onMounted(() => {
   <MainLayout>
     <section class="text-gray-600 body-font">
       <div class="container px-5 py-24 mx-auto">
-        <div class="flex flex-col text-center w-full mb-28">
+        <div class="flex flex-col text-center w-full mb-20">
           <h2
             class="text-lg text-indigo-500 tracking-widest font-medium title-font mb-1"
           >
             来場者数カウント
           </h2>
 
-          <h1 class="text-6xl font-medium title-font text-gray-600 mt-16 mb-4">
+          <h1 class="text-4xl font-medium title-font text-gray-600 mt-16 mb-4">
             {{ count ? count : "取得中" }}
           </h1>
           <p>{{ new Date(last_created_at).toLocaleString('ja-JP', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' }) }}</p>
@@ -64,7 +64,7 @@ onMounted(() => {
           </button>
         </div>
 
-        <div class="mb-24 flex flex-wrap -m-4">
+        <div class="mb-12 flex flex-wrap -m-4">
           <div class="w-1/2 mx-auto">
             <h2 class="pb-4 border-b-2 font-bold mb-4 text-2xl text-center">
               高校生
@@ -85,7 +85,7 @@ onMounted(() => {
             </div>
           </div>
         </div>
-        <div class="mb-24 flex flex-wrap -m-4">
+        <div class="mb-12 flex flex-wrap -m-4">
           <div class="w-1/2 mx-auto">
             <h2 class="pb-4 border-b-2 font-bold mb-4 text-2xl text-center">
               大学生
@@ -106,7 +106,7 @@ onMounted(() => {
             </div>
           </div>
         </div>
-        <div class="mb-24 flex flex-wrap -m-4">
+        <div class="mb-12 flex flex-wrap -m-4">
           <div class="w-1/2 mx-auto">
             <h2 class="pb-4 border-b-2 font-bold mb-4 text-2xl text-center">
               社会人

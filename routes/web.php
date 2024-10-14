@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CountController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\MusicController;
 use App\Http\Controllers\ProfileController;
@@ -24,6 +25,10 @@ Route::post('/store' ,[MainController::class, 'store'])->name('store');
 
 // サイネージ画面
 Route::get('/signage', [MainController::class, 'signage'])->name('signage');
+Route::get('/signage/analysis' , [MainController::class, 'signage_analysis'])->name('signage.analysis');
+
+
+
 
 Route::get('/api/getAnswers', [MainController::class, 'getAnswers'])->name('getAnswers');
 
@@ -31,6 +36,11 @@ Route::get('/api/getAnswers', [MainController::class, 'getAnswers'])->name('getA
 Route::get('/school', [SchoolController::class, 'create'])->name('school.create');
 Route::post('/store/school', [SchoolController::class, 'store'])->name('store.school');
 
+// 来場者数カウント
+Route::get('/count', [CountController::class, 'index'])->name('count.index');
+Route::get('/getCount', [CountController::class, 'getCount'])->name('getCount');
+
+Route::post('/count/store', [CountController::class, "store"])->name('count.store');
 
 // 打音検査アプリ
 Route::get('/music', [MusicController::class, 'index']);

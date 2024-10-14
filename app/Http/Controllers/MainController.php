@@ -26,12 +26,18 @@ class MainController extends Controller
         $Answer3 = $request->Answer3;
         $Answer4 = $request->Answer4;
         $Answer5 = $request->Answer5;
+        // dd($Answer4);
+
         if($Answer4){
+            dd('実行');
+
             $text = "";
             foreach($Answer4 as $ans4){
                 $text .= $ans4 . ',';
             }
             $Answer4 = rtrim($text, ',');
+        }else{
+            $Answer4 = "";
         }
 
         
@@ -56,6 +62,11 @@ class MainController extends Controller
         $answers = OtexQuestion::select('otex_questions.*','schools.name')->join('schools','schools.id','otex_questions.school')->orderby('created_at','desc')->get();
 
         return Inertia::render('Signage', ['answers' => $answers]);
+    }
+    public function signage_analysis(){
+
+        return Inertia::render('Analysis');
+        
     }
 
     public function getAnswers(){
